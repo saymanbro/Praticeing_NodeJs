@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-5/css/all.min.css" integrity="sha512-ir38KXrLnv6J6Rx1XZqGybX/lxw0vMK7kfr3lnA0vauc1Q2k08+6OYkt5YS1nVh/FyLUL3i06HO2rRQ39L9fWQ==" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <title>Weather_Api</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+          
+        }
+        .main_div{
+            width: 100vw;
+            height: 100vh;
+            background: #eee;
+            text-align: center;
+            display: grid;
+            place-items: center;
+        }
+        .weather{
+            border-radius:7px;
+            margin: auto;
+             background-color:#a5bbdd;
+             padding: 20px 20px;
+             box-shadow: 0 0.2rem 3rem rgba(0,0,0,0.2);
+        }
+        .weather h1 i{
+            font-size:4rem
+        }
+       
+    </style>
+</head>
+<body>
+
+    <div class="main_div">
+        <div class="weather">
+            <h1 style='color: #eccc8a'><i class="fas fa-sun"></i></h1>
+            
+            <h4> <i class="fas fa-map-marked-alt"></i> {%city%},{%country%}</h4>
+            <small style='color: #777' id='date'>  </small>
+            <br>
+            <h2>{%tem%} &deg;C</h2>
+            <span>maxTem {%mx%}</span> <span>minTem:{%min%}</span>
+
+        </div>
+    </div>
+
+    <script>
+       const currentDateAndTime = document.getElementById('date');
+       const getCurrentDate  = () =>{
+        let d = new Date();
+let weekday = new Array(7);
+weekday[0] = "Sunday";
+weekday[1] = "Monday";
+weekday[2] = "Tuesday";
+weekday[3] = "Wednesday";
+weekday[4] = "Thursday";
+weekday[5] = "Friday";
+weekday[6] = "Saturday";
+
+let dayName = weekday[d.getDay()];
+
+let month = new Array();
+month[0] = "January";
+month[1] = "February";
+month[2] = "March";
+month[3] = "April";
+month[4] = "May";
+month[5] = "June";
+month[6] = "July";
+month[7] = "August";
+month[8] = "September";
+month[9] = "October";
+month[10] = "November";
+month[11] = "December";
+var monthName = month[d.getMonth()];
+ return `${dayName} | ${monthName}`; 
+  
+       }
+       const currentTimeFun  = () => {
+            const d = new Date();
+            let hours = d.getHours();
+            let min = d.getMinutes();
+            let period = 'PM';
+            if(hours > 12){
+                hours = hours - 12
+            }
+            if(min < 10){
+                min = '0' + min
+            }
+            if(hours > 12){
+                hours = hours + 'AM'
+            }
+           return `${hours}:${min} ${period}`; 
+       }
+       currentDateAndTime.innerHTML = getCurrentDate() + ' | ' +  currentTimeFun();
+    // getCurrentDate();
+    // currentTime();
+    </script>
+</body>
+</html>
